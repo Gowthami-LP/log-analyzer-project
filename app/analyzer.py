@@ -1,4 +1,5 @@
-﻿# Create a function called analyze_logs
+﻿# Analyze log entries and identify ERROR and WARNING messages.
+# Create a function called analyze_logs
 # This function receives a list of log messages
 def analyze_logs(logs):
 
