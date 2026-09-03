@@ -1,0 +1,10 @@
+﻿1.INFO: Application started successfully
+2.INFO: User login request received
+3.WARNING: Database response time is high
+4.INFO: User authentication completed
+5.ERROR: Database connection failed
+6.INFO: New user registration completed
+7.WARNING: Disk space is running low
+8.INFO: File upload completed successfully
+9.ERROR: Unable to process payment request
+10.INFO: Application stopped successfully

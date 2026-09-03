@@ -1,0 +1,14 @@
+﻿{
+    "logs": [
+        "INFO: Application started successfully",
+        "INFO: User login request received",
+        "WARNING: Database response time is high",
+        "INFO: User authentication completed",
+        "ERROR: Database connection failed",
+        "INFO: New user registration completed",
+        "WARNING: Disk space is running low",
+        "INFO: File upload completed successfully",
+        "ERROR: Unable to process payment request",
+        "INFO: Application stopped successfully"
+    ]
+}
