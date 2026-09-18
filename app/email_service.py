@@ -2,6 +2,10 @@
 # os allows Python to read environment variables
 import os
 
+# Import logging
+# logging records errors with useful diagnostic details
+import logging
+
 # Import smtplib
 # smtplib is Python's built-in library for sending emails
 import smtplib
@@ -13,6 +17,9 @@ from email.message import EmailMessage
 # Import load_dotenv
 # load_dotenv() reads values from our .env file
 from dotenv import load_dotenv
+
+# Create a logger for this module
+logger = logging.getLogger(__name__)
 
 # Load the variables from the .env file
 load_dotenv()
@@ -71,7 +78,7 @@ def send_email(alerts):
             # Send the email
             server.send_message(message)
     except Exception as exc:
-        print(f"Failed to send email: {exc}")
+        logger.error("Failed to send email: %s", exc, exc_info=True)
         return False
 
     # Print a confirmation message

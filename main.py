@@ -1,5 +1,11 @@
-﻿# Import FastAPI
-from fastapi import FastAPI, UploadFile, File, HTTPException
+﻿# Import logging
+import logging
+
+# Import FastAPI
+from fastapi import FastAPI, UploadFile, File, HTTPException, Request
+
+# Import JSONResponse
+from fastapi.responses import JSONResponse
 
 # Import Pydantic
 from pydantic import BaseModel
@@ -12,12 +18,37 @@ from app.excel_reader import read_excel_file
 # Import our common pipeline
 from app.pipeline import process_logs
 
+# Configure application logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+
+# Create a logger for this API module
+logger = logging.getLogger(__name__)
+
 # Create FastAPI application
 app = FastAPI(
     title="Log Analyzer API",
     description="API for analyzing TXT, JSON and Excel log files",
     version="1.0.0"
 )
+
+
+@app.exception_handler(Exception)
+async def handle_unexpected_exception(request: Request, exc: Exception):
+    logger.error(
+        "Unexpected error while handling %s %s: %s",
+        request.method,
+        request.url.path,
+        exc,
+        exc_info=(type(exc), exc, exc.__traceback__)
+    )
+
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal server error."}
+    )
 
 # ---------------------------------------------------------
 # Temporary storage for alerts
